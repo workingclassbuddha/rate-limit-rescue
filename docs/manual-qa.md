@@ -1,6 +1,6 @@
 # Manual QA
 
-Run this checklist against the unpacked Chrome extension before tagging a private-alpha release.
+Run this checklist against the unpacked Chrome extension before tagging a release.
 
 ## Chrome Extension
 
@@ -12,11 +12,13 @@ Run this checklist against the unpacked Chrome extension before tagging a privat
 6. Capture a normal web page and verify selected text or visible page context appears.
 7. Import a legacy v0.1 `.ocp.json` file and verify it upgrades to v0.2.
 8. Export a v0.2 `.ocp.json` file and re-import it.
-9. Copy Markdown and paste manually into another assistant.
-10. Insert into Claude with auto-send off.
-11. Insert into ChatGPT with auto-send off.
-12. Only try browser auto-send after confirming the visible send button is correct.
-13. Confirm unsupported or blocked pages show actionable fallback guidance.
+9. Choose each available target assistant from the popup and confirm `Capture & Open` opens the right destination.
+10. Copy Markdown and paste manually into another assistant.
+11. Insert into Claude with auto-send off.
+12. Insert into ChatGPT with auto-send off.
+13. Enable `Send automatically` and confirm the button changes to `Capture, Open & Send`.
+14. Try browser auto-send only after confirming the visible send button is correct.
+15. Confirm unsupported or blocked pages show actionable fallback guidance.
 
 ## Packaging
 
@@ -27,4 +29,3 @@ npm run package:chrome
 ```
 
 Inspect the zip before uploading. It should contain extension files only: popup, background, content script, icons, manifest, and shared/background libraries.
-

@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Open Context — Preview</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #111113;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 24px 60px;
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    :root {
+      --bg:        #0A0A0C;
+      --line:      rgba(255,255,255,.07);
+      --t-hi:      rgba(255,255,255,.90);
+      --t-mid:     rgba(255,255,255,.52);
+      --t-lo:      rgba(255,255,255,.28);
+      --teal:      #3DD6C8;
+      --teal-bg:   rgba(61,214,200,.11);
+      --teal-line: rgba(61,214,200,.26);
+      --surface:   rgba(255,255,255,.04);
+      --font: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    /* Extension shell */
+    .shell {
+      width: 420px;
+      background: var(--bg);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.07);
+      color: var(--t-hi);
+      -webkit-font-smoothing: antialiased;
+      font: 400 13px/1.5 var(--font);
+    }
+
+    /* Chrome bar */
+    .chrome {
+      display: flex;
+      align-items: center;
+      padding: 9px 14px 8px;
+      background: #0E0E10;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      gap: 8px;
+    }
+
+    .dots { display: flex; gap: 5px; }
+    .dots span { width: 9px; height: 9px; border-radius: 50%; }
+    .dots span:nth-child(1) { background: #FF5F56; }
+    .dots span:nth-child(2) { background: #FFBD2E; }
+    .dots span:nth-child(3) { background: #27C93F; }
+
+    .chrome-title {
+      font-size: 11px;
+      color: rgba(255,255,255,.28);
+      letter-spacing: .015em;
+      margin: 0 auto;
+      padding-right: 38px;
+    }
+
+    /* App */
+    .app { padding: 0 0 8px; }
+
+    .header {
+      padding: 19px 20px 17px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .logo-mark {
+      color: var(--teal);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-name {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      color: var(--t-hi);
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      color: var(--t-lo);
+    }
+
+    .section {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section:last-child { border-bottom: none; padding-bottom: 20px; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--t-lo);
+      margin-bottom: 10px;
+    }
+
+    .tab-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .tab-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--t-hi);
+      margin-bottom: 2px;
+    }
+
+    .tab-meta { font-size: 11.5px; color: var(--t-mid); }
+
+    .icon-btn {
+      width: 30px; height: 30px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--t-lo);
+      font-size: 13px;
+      display: grid; place-items: center;
+      border-radius: 8px; cursor: pointer;
+      flex-shrink: 0;
+      transition: color 120ms, border-color 120ms, transform 260ms cubic-bezier(.22,.68,0,1.2);
+    }
+
+    .icon-btn:hover { color: var(--t-hi); border-color: rgba(255,255,255,.12); transform: rotate(90deg); }
+
+    .field { display: grid; gap: 6px; margin-bottom: 10px; }
+
+    .field-label {
+      font-size: 10.5px; font-weight: 500;
+      color: var(--t-lo); letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    textarea {
+      width: 100%; min-height: 62px; resize: none;
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 10px; color: var(--t-lo);
+      padding: 10px 12px;
+      font: 400 12.5px/1.6 var(--font);
+      font-style: italic;
+      outline: none;
+    }
+
+    .btn-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .btn-row + .btn-row { margin-top: 6px; }
+
+    button {
+      cursor: pointer;
+      border-radius: 9px;
+      font: 500 12.5px var(--font);
+      height: 36px; padding: 0 14px;
+      border: 1px solid transparent;
+      letter-spacing: -.005em;
+      transition: opacity 120ms, transform 140ms cubic-bezier(.22,.68,0,1.15);
+    }
+
+    .btn-primary {
+      background: var(--teal);
+      color: #071110;
+      font-weight: 600;
+      border-color: var(--teal);
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); opacity: .9; }
+
+    .btn-primary:disabled { opacity: .28; cursor: not-allowed; }
+
+    .btn-ghost {
+      background: var(--surface);
+      color: var(--t-mid);
+      border-color: var(--line);
+    }
+
+    .btn-ghost:hover { transform: translateY(-1px); background: rgba(255,255,255,.06); color: var(--t-hi); border-color: rgba(255,255,255,.12); }
+
+    .btn-ghost:disabled { opacity: .28; cursor: not-allowed; }
+
+    .wide { width: 100%; margin-top: 6px; }
+
+    .target-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 6px; margin-bottom: 6px;
+    }
+
+    select {
+      height: 36px; border-radius: 9px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--t-hi);
+      font: 500 12.5px var(--font);
+      padding: 0 28px 0 12px;
+      outline: none; cursor: pointer; appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'%3E%3Cpath d='M1 1l4 4 4-4' stroke='rgba(255,255,255,0.3)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+    }
+
+    .status-hi { font-size: 12px; font-weight: 500; color: var(--t-hi); margin-top: 10px; }
+    .status-lo { font-size: 11.5px; color: var(--t-mid); margin-top: 3px; line-height: 1.5; }
+
+    .pack-row {
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 12px; margin-bottom: 12px;
+    }
+
+    .pack-info { min-width: 0; }
+
+    .pack-title {
+      font-size: 13px; font-weight: 500; color: var(--t-hi);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+      margin-bottom: 2px;
+    }
+
+    .pack-src { font-size: 11.5px; color: var(--t-mid); }
+
+    .pack-pill {
+      flex-shrink: 0;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .06em; text-transform: uppercase;
+      color: var(--teal); background: var(--teal-bg);
+      border: 1px solid var(--teal-line);
+      border-radius: 999px; padding: 3px 9px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .stat {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 9px; padding: 8px 10px 7px;
+    }
+
+    .stat-val {
+      font-size: 15px; font-weight: 700; letter-spacing: -.025em;
+      color: var(--t-hi); line-height: 1.1;
+    }
+
+    .stat-key {
+      font-size: 9.5px; font-weight: 500; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--t-lo); margin-top: 4px;
+    }
+
+    .trust { font-size: 11px; color: var(--t-lo); margin-top: 9px; }
+
+    .preview {
+      background: var(--surface); border: 1px solid var(--line);
+      border-radius: 10px; padding: 11px 13px;
+      font: 400 10.5px/1.7 'SF Mono', 'Cascadia Code', monospace;
+      color: var(--t-mid); white-space: pre-wrap;
+    }
+
+    .recent-item {
+      display: grid; gap: 4px;
+      padding: 11px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .recent-item:last-child { border-bottom: none; }
+
+    .recent-top {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 8px;
+    }
+
+    .recent-name {
+      font-size: 12.5px; font-weight: 500; color: var(--t-hi);
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+
+    .recent-name.active { color: var(--teal); }
+    .recent-time { font-size: 11px; color: var(--t-lo); flex-shrink: 0; }
+    .recent-sub { font-size: 11.5px; color: var(--t-mid); }
+
+    .recent-actions { display: flex; gap: 5px; margin-top: 4px; }
+
+    .recent-btn {
+      height: 26px; padding: 0 10px;
+      border-radius: 7px; border: 1px solid var(--line);
+      background: transparent; color: var(--t-lo);
+      font: 500 11px var(--font); cursor: pointer;
+    }
+
+    .recent-btn:hover { color: var(--t-hi); border-color: rgba(255,255,255,.14); }
+  </style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- Chrome bar -->
+  <div class="chrome">
+    <div class="dots"><span></span><span></span><span></span></div>
+    <div class="chrome-title">Open Context Protocol</div>
+  </div>
+
+  <main class="app">
+
+    <!-- Header / Logo -->
+    <header class="header">
+      <div class="logo-mark">
+        <svg width="30" height="22" viewBox="0 0 30 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0.7" y="0.7" width="11.6" height="20.6" rx="3" stroke="currentColor" stroke-width="1.4"/>
+          <rect x="17.7" y="0.7" width="11.6" height="20.6" rx="3" stroke="currentColor" stroke-width="1.4"/>
+          <path d="M13.5 11h3M16.5 11l-1.4-1.4M16.5 11l-1.4 1.4" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name">Open Context</div>
+        <div class="logo-sub">Move context between AI assistants</div>
+      </div>
+    </header>
+
+    <!-- Current Tab -->
+    <section class="section">
+      <div class="section-label">Current Tab</div>
+      <div class="tab-row">
+        <div>
+          <div class="tab-title">Claude — New conversation</div>
+          <div class="tab-meta">AI assistant detected · capture includes conversation</div>
+        </div>
+        <button class="icon-btn">↻</button>
+      </div>
+    </section>
+
+    <!-- Capture -->
+    <section class="section">
+      <div class="section-label">Capture</div>
+      <div class="field">
+        <div class="field-label">Goal for the next assistant</div>
+        <textarea readonly placeholder="Continue this work in Claude because I hit a ChatGPT limit. Preserve the plan and next steps."></textarea>
+      </div>
+      <div class="btn-row">
+        <button class="btn-primary">Capture Context</button>
+        <button class="btn-ghost" disabled>Copy Markdown</button>
+      </div>
+      <div class="btn-row">
+        <button class="btn-ghost" disabled>Export JSON</button>
+        <button class="btn-ghost">Import JSON</button>
+      </div>
+    </section>
+
+    <!-- Send To -->
+    <section class="section">
+      <div class="section-label">Send To</div>
+      <div class="target-row">
+        <select>
+          <option>Claude</option>
+          <option>ChatGPT</option>
+          <option>Gemini</option>
+          <option>DeepSeek</option>
+        </select>
+        <button class="btn-ghost" style="height:36px;padding:0 14px">Open</button>
+      </div>
+      <button class="btn-primary wide" disabled>Insert Into Active Chat</button>
+      <div class="status-hi">Pack ready — ChatGPT · 3m ago</div>
+      <div class="status-lo">Open a target assistant, then insert the pack directly into the composer.</div>
+    </section>
+
+    <!-- Selected Pack -->
+    <section class="section">
+      <div class="section-label">Selected Pack</div>
+      <div class="pack-row">
+        <div class="pack-info">
+          <div class="pack-title">ChatGPT — Architecture planning</div>
+          <div class="pack-src">ChatGPT · chat.openai.com</div>
+        </div>
+        <div class="pack-pill">Conversation</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-val">24</div>
+          <div class="stat-key">Messages</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">18 KB</div>
+          <div class="stat-key">Pack Size</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">3m ago</div>
+          <div class="stat-key">Captured</div>
+        </div>
+      </div>
+      <div class="trust">Local only until you copy, export, or insert.</div>
+    </section>
+
+    <!-- Preview -->
+    <section class="section">
+      <div class="section-label">Preview</div>
+      <pre class="preview"># Open Context Pack
+Source: ChatGPT (chat.openai.com)
+Goal: Continue architecture planning in Claude.
+
+Messages: 24  ·  Captured: 3m ago</pre>
+    </section>
+
+    <!-- Recent Packs -->
+    <section class="section" style="padding-bottom:20px">
+      <div class="section-label">Recent Packs</div>
+      <div class="recent-item">
+        <div class="recent-top">
+          <div class="recent-name active">ChatGPT — Architecture planning</div>
+          <div class="recent-time">3m ago</div>
+        </div>
+        <div class="recent-sub">ChatGPT · Continue architecture planning in Claude.</div>
+        <div class="recent-actions">
+          <button class="recent-btn">Select</button>
+          <button class="recent-btn">Export</button>
+        </div>
+      </div>
+      <div class="recent-item">
+        <div class="recent-top">
+          <div class="recent-name">Gemini — Market research brief</div>
+          <div class="recent-time">2h ago</div>
+        </div>
+        <div class="recent-sub">Gemini · Summarise findings for a deck.</div>
+        <div class="recent-actions">
+          <button class="recent-btn">Select</button>
+          <button class="recent-btn">Export</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

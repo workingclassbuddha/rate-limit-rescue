@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Open Context Protocol</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="app">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="logo-mark" aria-hidden="true">
+          <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Left context rect -->
+            <rect x="0.7" y="0.7" width="10.6" height="18.6" rx="2.8" stroke="currentColor" stroke-width="1.4"/>
+            <!-- Right context rect -->
+            <rect x="16.7" y="0.7" width="10.6" height="18.6" rx="2.8" stroke="currentColor" stroke-width="1.4"/>
+            <!-- Arrow -->
+            <path d="M13 10h2M15 10l-1.3-1.3M15 10l-1.3 1.3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div class="logo-name">Open Context</div>
+          <div class="logo-sub">Move context between AI assistants</div>
+        </div>
+      </header>
+
+      <!-- Current Tab -->
+      <section class="section">
+        <div class="section-label">Current Tab</div>
+        <div class="tab-row">
+          <div class="tab-info">
+            <div id="source-title">Checking active tab…</div>
+            <div id="source-meta">Open an AI assistant tab or any web page.</div>
+          </div>
+          <button id="refresh-status" class="icon-btn" title="Refresh" aria-label="Refresh status">↻</button>
+        </div>
+      </section>
+
+      <!-- Handoff -->
+      <section class="section">
+        <div class="section-label">Handoff</div>
+        <div class="field">
+          <label class="field-label" for="target">Target assistant</label>
+          <div class="target-field">
+            <select id="target" aria-describedby="target-support">
+              <option value="claude">Claude</option>
+              <option value="chatgpt">ChatGPT</option>
+              <option value="gemini">Gemini</option>
+              <option value="deepseek">DeepSeek</option>
+              <option value="perplexity">Perplexity</option>
+              <option value="copilot">Copilot</option>
+              <option value="poe">Poe</option>
+              <option value="lechat">Le Chat</option>
+              <option value="grok">Grok</option>
+              <option value="huggingchat">HuggingChat</option>
+              <option value="qwen">Qwen</option>
+            </select>
+          </div>
+          <div id="target-support" class="support-note">Message adapter</div>
+        </div>
+        <div class="field optional-goal">
+          <label class="field-label" for="goal">Goal for the next assistant <span>optional</span></label>
+          <div class="suggestions" id="goal-suggestions" aria-label="Goal presets">
+            <button class="suggestion-chip" type="button" data-goal-preset="rate-limit">Rate Limit</button>
+            <button class="suggestion-chip" type="button" data-goal-preset="expand">Expand</button>
+            <button class="suggestion-chip" type="button" data-goal-preset="summarize">Summarize</button>
+            <button class="suggestion-chip" type="button" data-goal-preset="handoff">Clean Handoff</button>
+          </div>
+          <textarea id="goal" rows="3" placeholder="Continue this work in Claude because I hit a limit. Preserve the plan and next steps."></textarea>
+        </div>
+        <label class="send-toggle" for="auto-send">
+          <input id="auto-send" type="checkbox">
+          <span class="toggle-copy">
+            <span>Send automatically</span>
+            <small>Off by default. When off, Open Context inserts the handoff for review.</small>
+          </span>
+        </label>
+        <button id="open-and-inject" class="btn btn-primary wide" disabled>Capture & Open</button>
+        <button id="capture-context" class="btn btn-ghost wide">Capture Only</button>
+        <button id="insert-current" class="btn btn-ghost wide" disabled>Inject Into Current Chat</button>
+        <div class="btn-row utility-row">
+          <button id="copy-context" class="btn btn-ghost" disabled>Copy Markdown</button>
+          <button id="export-json" class="btn btn-ghost" disabled>Export JSON</button>
+        </div>
+        <button id="import-json" class="btn btn-ghost subtle wide">Import JSON</button>
+        <input id="import-file" type="file" accept=".json,.ocp.json,.context.json,application/json" hidden>
+        <div id="handoff-status" class="meta status-line" role="status" aria-live="polite">No context pack captured yet.</div>
+      </section>
+
+      <!-- More -->
+      <section class="section advanced-shell">
+        <details id="advanced-panel" class="advanced-panel">
+          <summary class="advanced-toggle">More</summary>
+          <div class="advanced-body">
+            <div id="handoff-detail" class="meta">Capture & Open captures this tab, opens the selected target, and inserts the handoff for review.</div>
+
+            <div class="advanced-block">
+              <div class="section-label small">Selected Pack</div>
+              <div class="pack-row">
+                <div class="pack-info">
+                  <div id="pack-title">No pack selected</div>
+                  <div id="pack-source">Capture or import a pack to inspect it.</div>
+                </div>
+                <div id="pack-pill" class="pack-pill">Waiting</div>
+              </div>
+              <div class="stats-row">
+                <div class="stat">
+                  <div class="stat-val" id="pack-messages">0</div>
+                  <div class="stat-key">Messages</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-val" id="pack-size">0 KB</div>
+                  <div class="stat-key">Pack Size</div>
+                </div>
+                <div class="stat">
+                  <div class="stat-val" id="pack-age">—</div>
+                  <div class="stat-key">Captured</div>
+                </div>
+              </div>
+              <div class="trust-note">Local only until you copy, export, or insert.</div>
+            </div>
+
+            <div class="advanced-block">
+              <div class="section-label small">Preview</div>
+              <pre id="preview" class="preview">Capture a context pack to preview it here.</pre>
+            </div>
+
+            <div class="advanced-block">
+              <div class="section-label small">Recent Packs</div>
+              <div id="recent-list">
+                <div style="font-size:12px;color:var(--t-lo)">No recent context packs yet.</div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </section>
+
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>

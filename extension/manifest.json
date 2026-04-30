@@ -1,0 +1,88 @@
+{
+  "manifest_version": 3,
+  "name": "Open Context Protocol",
+  "short_name": "Open Context",
+  "version": "0.2.0",
+  "description": "Capture AI working context and continue it across ChatGPT, Claude, Gemini, DeepSeek, and more assistants.",
+  "homepage_url": "https://github.com/workingclassbuddha/open-context-protocol",
+  "minimum_chrome_version": "114",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "tabs",
+    "contextMenus"
+  ],
+  "commands": {
+    "capture-context": {
+      "suggested_key": {
+        "default": "Alt+Shift+C"
+      },
+      "description": "Capture the current AI context"
+    },
+    "insert-context": {
+      "suggested_key": {
+        "default": "Alt+Shift+I"
+      },
+      "description": "Insert the selected context pack into the active chat"
+    }
+  },
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://claude.ai/*",
+    "https://gemini.google.com/*",
+    "https://chat.deepseek.com/*",
+    "https://www.perplexity.ai/*",
+    "https://perplexity.ai/*",
+    "https://copilot.microsoft.com/*",
+    "https://poe.com/*",
+    "https://chat.mistral.ai/*",
+    "https://grok.com/*",
+    "https://x.ai/*",
+    "https://huggingface.co/chat/*",
+    "https://qwen.ai/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Open Context Protocol",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://claude.ai/*",
+        "https://gemini.google.com/*",
+        "https://chat.deepseek.com/*",
+        "https://www.perplexity.ai/*",
+        "https://perplexity.ai/*",
+        "https://copilot.microsoft.com/*",
+        "https://poe.com/*",
+        "https://chat.mistral.ai/*",
+        "https://grok.com/*",
+        "https://x.ai/*",
+        "https://huggingface.co/chat/*",
+        "https://qwen.ai/*"
+      ],
+      "js": [
+        "content/ai-chat.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

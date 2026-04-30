@@ -1,0 +1,16 @@
+{
+  "name": "open-context-protocol",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome extension and open schema for moving AI working context between assistants.",
+  "scripts": {
+    "check:manifest": "node -e \"JSON.parse(require('fs').readFileSync('extension/manifest.json', 'utf8')); console.log('manifest ok')\"",
+    "check:schema": "node -e \"JSON.parse(require('fs').readFileSync('schema/open-context-pack.schema.json', 'utf8')); console.log('schema ok')\"",
+    "check:js": "node --check extension/background.js && node --check extension/content/ai-chat.js && node --check extension/popup/popup.js && node --check extension/lib/shared/context-pack.js && node --check extension/lib/shared/context-pack-validation.js && node --check extension/lib/shared/providers.js && node --check extension/lib/background/page-context.js && node --check extension/lib/background/storage.js && node --check packages/core/index.js",
+    "test": "node --test test/*.test.js",
+    "check": "npm run check:manifest && npm run check:schema && npm run check:js && npm run test",
+    "package:chrome": "node scripts/package-chrome.mjs"
+  }
+}
+

@@ -1,8 +1,10 @@
-# Open Context Protocol Release Notes
+# Open Context Protocol Public Release
 
 Open Context Protocol is a Chrome extension for moving working context between AI assistants.
 
-The release flow is:
+The public release story is simple: choose the assistant where the work should continue, press `Capture & Open`, and Open Context carries the current context into the next composer. If `Send automatically` is enabled, it attempts to press the visible send button after insertion.
+
+## User Flow
 
 1. Open an assistant conversation or a useful web page.
 2. Choose the target assistant.
@@ -31,4 +33,3 @@ npm run package:chrome
 2. Enable Developer mode
 3. Click `Load unpacked`
 4. Select the `extension` folder
-

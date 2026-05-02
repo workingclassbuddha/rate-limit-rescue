@@ -595,6 +595,11 @@ select {
   border-color: rgba(255,255,255,.14);
 }
 
+.recent-btn--danger:hover {
+  color: #e1866f;
+  border-color: rgba(225, 134, 111, 0.3);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

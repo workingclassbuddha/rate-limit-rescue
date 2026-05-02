@@ -196,7 +196,7 @@ async function insertMarkdownIntoTab(tabId, markdown, { submit = false } = {}) {
   let lastError = '';
   let lastResult = null;
 
-  for (let attempt = 0; attempt < 18; attempt += 1) {
+  for (let attempt = 0; attempt < 12; attempt += 1) {
     try {
       const tab = await chrome.tabs.get(tabId);
       if (!tab?.id || !isSupportedAiUrl(tab.url || '')) {
@@ -223,6 +223,7 @@ async function insertMarkdownIntoTab(tabId, markdown, { submit = false } = {}) {
     await sleep(Math.min(450 + attempt * 120, 1500));
   }
 
+  console.warn('Open Context insertion retries exhausted.', { tabId, lastError });
   const error = new Error(lastError || 'Could not auto-inject the selected context pack.');
   if (lastResult) {
     error.result = lastResult;
@@ -394,6 +395,15 @@ const messageHandlers = {
     return { ok: true, ...serializeContextPack(pack) };
   },
 
+  async DELETE_CONTEXT_PACK(message) {
+    const deleted = await storageApi.deleteContextPack(message.id);
+    if (!deleted) {
+      return { ok: false, error: 'Could not delete that context pack.' };
+    }
+
+    return { ok: true };
+  },
+
   async IMPORT_CONTEXT_PACK(message) {
     const pack = upgradeLegacyContextPack(message.pack || {});
     const saved = await storageApi.saveContextPack(pack);
@@ -469,6 +479,9 @@ chrome.commands.onCommand.addListener(async (command) => {
   try {
     if (command === 'capture-context') {
       await captureContextPack();
+      chrome.action.setBadgeText({ text: '✓' });
+      chrome.action.setBadgeBackgroundColor({ color: '#3DD6C8' });
+      setTimeout(() => chrome.action.setBadgeText({ text: '' }), 1500);
       return;
     }
 
@@ -477,6 +490,9 @@ chrome.commands.onCommand.addListener(async (command) => {
     }
   } catch (error) {
     console.error(error);
+    chrome.action.setBadgeText({ text: '!' });
+    chrome.action.setBadgeBackgroundColor({ color: '#e1866f' });
+    setTimeout(() => chrome.action.setBadgeText({ text: '' }), 2000);
   }
 });
 

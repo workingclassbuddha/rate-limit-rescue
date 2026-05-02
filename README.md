@@ -1,7 +1,5 @@
 # Open Context Protocol
 
-![Open Context Protocol banner](docs/branding/open-context-protocol-banner.svg)
-
 Open Context Protocol is a Chrome extension for moving live working context between AI assistants.
 
 Choose where the work should continue, press go, and Open Context captures the current tab, opens the target assistant, pastes the handoff, and can send it with one click when auto-send is enabled.

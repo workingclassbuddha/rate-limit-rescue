@@ -362,8 +362,24 @@ function renderRecents(packs = [], activePackId = '') {
     exportButton.textContent = 'Export';
     exportButton.addEventListener('click', () => downloadJson(pack));
 
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'recent-btn';
+    deleteButton.classList.add('recent-btn--danger');
+    deleteButton.textContent = 'Delete';
+    deleteButton.addEventListener('click', async () => {
+      const result = await sendMessage({ type: 'DELETE_CONTEXT_PACK', id: pack.id });
+      if (result?.ok) {
+        if (selectedPackId === pack.id) {
+          setSelectedPayload();
+        }
+        await refreshStatus();
+        setHandoffStatus('Deleted context pack.', { tone: 'success' });
+      }
+    });
+
     actions.appendChild(preview);
     actions.appendChild(exportButton);
+    actions.appendChild(deleteButton);
 
     item.appendChild(top);
     item.appendChild(summary);
@@ -421,6 +437,12 @@ async function refreshStatus() {
   }
 
   renderTargetProviders(targets.providers || []);
+  const stored = await chrome.storage.local.get({ lastTargetProvider: '' });
+  if (stored.lastTargetProvider && targets.providers?.some((provider) => provider.id === stored.lastTargetProvider)) {
+    $('target').value = stored.lastTargetProvider;
+    renderTargetSupport();
+    updateLaunchCopy();
+  }
   renderStatus(status);
   recentPacks = recents.packs || [];
 
@@ -482,6 +504,7 @@ $('goal').addEventListener('input', () => {
 });
 
 $('target').addEventListener('change', () => {
+  chrome.storage.local.set({ lastTargetProvider: $('target').value });
   if (activeGoalPresetId) {
     applyGoalPreset(activeGoalPresetId);
   }

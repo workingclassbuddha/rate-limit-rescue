@@ -84,6 +84,34 @@ export function createStorageApi({
     return pack;
   }
 
+  async function deleteContextPack(id) {
+    if (!id) {
+      return false;
+    }
+
+    const data = await storage.get({
+      [STORAGE_KEYS.latestPack]: null,
+      [STORAGE_KEYS.recentPacks]: [],
+      [STORAGE_KEYS.activePackId]: '',
+    });
+
+    const recent = (data[STORAGE_KEYS.recentPacks] || []).filter((pack) => pack.id !== id);
+    const updates = {
+      [STORAGE_KEYS.recentPacks]: recent,
+    };
+
+    if (data[STORAGE_KEYS.latestPack]?.id === id) {
+      updates[STORAGE_KEYS.latestPack] = recent[0] || null;
+    }
+
+    if (data[STORAGE_KEYS.activePackId] === id) {
+      updates[STORAGE_KEYS.activePackId] = recent[0]?.id || '';
+    }
+
+    await storage.set(updates);
+    return true;
+  }
+
   return {
     saveContextPack,
     getLatestContextPack,
@@ -91,5 +119,6 @@ export function createStorageApi({
     getContextPackById,
     getActiveContextPack,
     setActiveContextPack,
+    deleteContextPack,
   };
 }

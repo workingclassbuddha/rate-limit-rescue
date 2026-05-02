@@ -69,3 +69,24 @@ test('storage rejects invalid imported packs', async () => {
     /Invalid Open Context Pack/,
   );
 });
+
+test('storage deletes a pack and updates latest and active references', async () => {
+  const storage = createMemoryStorage();
+  const api = createStorageApi({ storage, now: () => '2026-04-21T00:01:00.000Z' });
+
+  const first = await api.saveContextPack(buildPack('pack-1', 'First'));
+  const second = await api.saveContextPack(buildPack('pack-2', 'Second'));
+
+  const deleted = await api.deleteContextPack(second.id);
+  assert.equal(deleted, true);
+
+  const latest = await api.getLatestContextPack();
+  assert.equal(latest.id, first.id);
+
+  const recent = await api.getRecentContextPacks();
+  assert.equal(recent.length, 1);
+  assert.equal(recent[0].id, first.id);
+
+  const active = await api.getActiveContextPack();
+  assert.equal(active.id, first.id);
+});

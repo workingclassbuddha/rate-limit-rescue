@@ -6,6 +6,7 @@ export const STORAGE_KEYS = {
   latestPack: 'latestContextPack',
   recentPacks: 'recentContextPacks',
   activePackId: 'activeContextPackId',
+  lastTarget: 'lastTargetProvider',
 };
 
 export const CONTEXT_MENU_IDS = {

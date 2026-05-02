@@ -55,8 +55,8 @@ export function formatInsertionSuccess(meta = {}) {
       tone: 'success',
       summary: `Inserted and sent in ${label}.`,
       detail: pageTitle
-        ? `Open Context used the visible send button on "${pageTitle}".`
-        : 'Open Context used the visible send button.',
+        ? `Rescue used the visible send button on "${pageTitle}".`
+        : 'Rescue used the visible send button.',
     };
   }
 
@@ -75,8 +75,8 @@ export function formatInsertionSuccess(meta = {}) {
       tone: 'success',
       summary: `Inserted into the active ${composer}.`,
       detail: pageTitle
-        ? `Open Context found a compatible composer on "${pageTitle}".`
-        : 'Open Context found a compatible composer on this page.',
+        ? `Rescue found a compatible composer on "${pageTitle}".`
+        : 'Rescue found a compatible composer on this page.',
     };
   }
 
@@ -101,8 +101,8 @@ export function formatInsertionFailure(meta = {}) {
         ? `Couldn't find a visible ${label} composer.`
         : "Couldn't find a compatible composer on this page.",
       detail: isKnownAssistant
-        ? 'Open a chat thread or click into the prompt box, then try again. Copy Markdown if you want to continue immediately.'
-        : 'This page may not expose a chat-style prompt yet. Open a composer, or copy Markdown instead.',
+        ? 'Open a chat thread or click into the prompt box, then try again. Copy Handoff if you want to continue immediately.'
+        : 'This page may not expose a chat-style prompt yet. Open a composer, or copy the handoff instead.',
     };
   }
 
@@ -110,7 +110,7 @@ export function formatInsertionFailure(meta = {}) {
     return {
       tone: 'error',
       summary: 'Found a composer, but it is not visible yet.',
-      detail: 'Open the prompt area or start a new thread, then try again. Copy Markdown stays available as a fallback.',
+      detail: 'Open the prompt area or start a new thread, then try again. Copy Handoff stays available as a fallback.',
     };
   }
 
@@ -126,15 +126,15 @@ export function formatInsertionFailure(meta = {}) {
     return {
       tone: 'error',
       summary: 'Found a composer, but the page blocked insertion.',
-      detail: 'Copy Markdown instead, or paste into the active prompt manually.',
+      detail: 'Copy Handoff instead, or paste into the active prompt manually.',
     };
   }
 
   if (code === 'INSERT_UNAVAILABLE') {
     return {
       tone: 'error',
-      summary: 'Open Context could not reach an insertable composer.',
-      detail: 'Reload the page or focus the active chat, then try again. Copy Markdown remains the safe fallback.',
+      summary: 'Rescue could not reach an insertable composer.',
+      detail: 'Reload the page or focus the active chat, then try again. Copy Handoff remains the safe fallback.',
     };
   }
 
@@ -148,8 +148,8 @@ export function formatInsertionFailure(meta = {}) {
 
   return {
     tone: 'error',
-    summary: 'Open Context could not insert this pack here.',
-    detail: meta.error || 'Copy Markdown instead, or try another assistant tab.',
+    summary: 'Rescue could not insert this pack here.',
+    detail: meta.error || 'Copy Handoff instead, or try another assistant tab.',
   };
 }
 

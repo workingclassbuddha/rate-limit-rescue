@@ -3,7 +3,7 @@
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Repo-local Open Context Protocol helpers for the Chrome extension and schema tests.",
+  "description": "Repo-local Open Context Pack helpers for Rate Limit Rescue and schema tests.",
   "exports": {
     ".": "./index.js"
   }

@@ -1,12 +1,12 @@
 # Contributing
 
-Thanks for helping with Open Context Protocol.
+Thanks for helping with Rate Limit Rescue.
 
 ## Development Flow
 
 1. Load the unpacked extension from `extension/` in `chrome://extensions`.
 2. Edit the extension, shared protocol helpers, docs, or tests.
-3. Reload Open Context in `chrome://extensions`.
+3. Reload Rate Limit Rescue in `chrome://extensions`.
 4. Run:
 
 ```bash

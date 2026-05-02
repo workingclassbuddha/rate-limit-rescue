@@ -1,7 +1,29 @@
-<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="128" height="128" fill="#0A0A0C"/>
-  <rect x="35" y="36" width="24" height="46" rx="7" stroke="#3DD6C8" stroke-width="4.5"/>
-  <rect x="69" y="36" width="24" height="46" rx="7" stroke="#3DD6C8" stroke-width="4.5"/>
-  <circle cx="64" cy="46" r="4" fill="#3DD6C8"/>
-  <path d="M60.5 67.5L67.5 60.5" stroke="#3DD6C8" stroke-width="4.5" stroke-linecap="round"/>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="ig" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(350 116) rotate(125) scale(420)">
+      <stop stop-color="#153635"/>
+      <stop offset="0.55" stop-color="#0A0A0C"/>
+      <stop offset="1" stop-color="#050607"/>
+    </radialGradient>
+    <filter id="soft"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.45"/></filter>
+  </defs>
+  <rect width="512" height="512" rx="104" fill="url(#ig)"/>
+  <rect x="8" y="8" width="496" height="496" rx="96" stroke="rgba(255,255,255,0.08)" stroke-width="16"/>
+  <g filter="url(#soft)">
+    <g transform="translate(0 0) scale(1)">
+      <rect x="88" y="112" width="132" height="288" rx="38" fill="#0F1718" stroke="#3DD6C8" stroke-width="18"/>
+      <rect x="292" y="112" width="132" height="288" rx="38" fill="#0F1718" stroke="#3DD6C8" stroke-width="18"/>
+      <rect x="112" y="150" width="84" height="18" rx="9" fill="#A9F0EA" opacity="0.74"/>
+      <rect x="112" y="188" width="64" height="14" rx="7" fill="#273334"/>
+      <rect x="112" y="222" width="84" height="14" rx="7" fill="#273334"/>
+      <rect x="316" y="150" width="84" height="18" rx="9" fill="#A9F0EA" opacity="0.74"/>
+      <rect x="316" y="188" width="64" height="14" rx="7" fill="#273334"/>
+      <rect x="316" y="222" width="84" height="14" rx="7" fill="#273334"/>
+      <path d="M235 256H277" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round"/>
+      <path d="M277 256L248 227" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M277 256L248 285" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M235 256H277" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round"/>
+      <path d="M277 256L248 227" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M277 256L248 285" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g></g>
 </svg>

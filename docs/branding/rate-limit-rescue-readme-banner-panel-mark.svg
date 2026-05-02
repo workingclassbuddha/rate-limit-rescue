@@ -1,0 +1,72 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="210" y1="0" x2="1400" y2="900" gradientUnits="userSpaceOnUse"><stop stop-color="#101314"/><stop offset="1" stop-color="#050607"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="22" stdDeviation="30" flood-color="#000" flood-opacity="0.38"/></filter>
+    <filter id="glow"><feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#3DD6C8" flood-opacity="0.28"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="#050607"/>
+  <rect x="92" y="72" width="1416" height="756" rx="44" fill="url(#bg)" stroke="#1E2A2A" stroke-width="2"/>
+  <circle cx="1340" cy="120" r="270" fill="#153635" fill-opacity="0.55"/>
+  <circle cx="1270" cy="168" r="160" fill="#48E1D8" fill-opacity="0.08"/>
+  <circle cx="202" cy="770" r="230" fill="#153635" fill-opacity="0.35"/>
+  <g transform="translate(178 142)">
+    <g transform="scale(0.25)" filter="url(#shadow)">
+    <g transform="translate(0 0) scale(1)">
+      <rect x="88" y="112" width="132" height="288" rx="38" fill="#0F1718" stroke="#3DD6C8" stroke-width="18"/>
+      <rect x="292" y="112" width="132" height="288" rx="38" fill="#0F1718" stroke="#3DD6C8" stroke-width="18"/>
+      <rect x="112" y="150" width="84" height="18" rx="9" fill="#A9F0EA" opacity="0.74"/>
+      <rect x="112" y="188" width="64" height="14" rx="7" fill="#273334"/>
+      <rect x="112" y="222" width="84" height="14" rx="7" fill="#273334"/>
+      <rect x="316" y="150" width="84" height="18" rx="9" fill="#A9F0EA" opacity="0.74"/>
+      <rect x="316" y="188" width="64" height="14" rx="7" fill="#273334"/>
+      <rect x="316" y="222" width="84" height="14" rx="7" fill="#273334"/>
+      <path d="M235 256H277" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round"/>
+      <path d="M277 256L248 227" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M277 256L248 285" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M235 256H277" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round"/>
+      <path d="M277 256L248 227" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M277 256L248 285" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g></g>
+    <text x="158" y="58" fill="#F5F7F7" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="76" font-weight="760" letter-spacing="-2.8">Rate Limit Rescue</text>
+    <text x="162" y="111" fill="#A9B1B2" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="31" font-weight="500">Instant context transfer to your preferred AI</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="178" y="350" width="400" height="314" rx="28" fill="#0A0A0C" stroke="#273334" stroke-width="2"/>
+    <rect x="210" y="386" width="206" height="26" rx="13" fill="#273334"/>
+    <rect x="210" y="438" width="288" height="50" rx="18" fill="#151C1D" stroke="#273334"/>
+    <text x="236" y="470" fill="#DCE4E5" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="21" font-weight="600">Keep going with...</text>
+    <rect x="246" y="512" width="286" height="62" rx="19" fill="#16292A" stroke="#315E5D"/>
+    <text x="274" y="548" fill="#A9F0EA" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="21" font-weight="650">The current plan is...</text>
+    <rect x="210" y="610" width="176" height="22" rx="11" fill="#273334" opacity="0.78"/>
+    <rect x="415" y="342" width="210" height="338" rx="26" fill="#160D0D" stroke="#E1866F" stroke-opacity="0.45" stroke-width="2"/>
+    <text x="454" y="486" fill="#E1866F" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="34" font-weight="760" letter-spacing="-0.8">Rate limit</text>
+    <text x="461" y="524" fill="#D8A699" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="520">context wall</text>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M650 508 C762 368 910 630 1070 472" stroke="#3DD6C8" stroke-width="14" stroke-linecap="round" fill="none"/>
+    <path d="M1070 472l-58-8 36-46" stroke="#48E1D8" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect x="719" y="426" width="176" height="74" rx="18" fill="#0F1718" stroke="#3DD6C8" stroke-opacity="0.68"/>
+    <text x="747" y="456" fill="#A9F0EA" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700">Rescue Pack</text>
+    <text x="747" y="482" fill="#A9B1B2" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="16" font-weight="500">messages + goal</text>
+  </g>
+  <g filter="url(#shadow)">
+    <rect x="1022" y="330" width="400" height="360" rx="30" fill="#0A0A0C" stroke="#273334" stroke-width="2"/>
+    <rect x="1056" y="368" width="190" height="28" rx="14" fill="#153635"/>
+    <text x="1078" y="389" fill="#A9F0EA" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="700">Preferred AI</text>
+    <rect x="1056" y="430" width="292" height="58" rx="19" fill="#151C1D" stroke="#273334"/>
+    <text x="1083" y="466" fill="#DCE4E5" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="21" font-weight="600">Continue from this...</text>
+    <rect x="1092" y="514" width="272" height="74" rx="22" fill="#123432" stroke="#3DD6C8" stroke-opacity="0.72"/>
+    <text x="1120" y="547" fill="#F5F7F7" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="21" font-weight="680">Context restored.</text>
+    <text x="1120" y="574" fill="#A9F0EA" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="520">Ready to keep working.</text>
+  </g>
+  <g transform="translate(180 730)">
+    <rect width="170" height="50" rx="25" fill="#111617" stroke="#273334"/>
+    <text x="26" y="32" fill="#DCE4E5" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="650">Local-first</text>
+    <rect x="192" width="224" height="50" rx="25" fill="#111617" stroke="#273334"/>
+    <text x="218" y="32" fill="#DCE4E5" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="650">Review before send</text>
+    <rect x="438" width="258" height="50" rx="25" fill="#111617" stroke="#273334"/>
+    <text x="464" y="32" fill="#DCE4E5" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="650">Works across assistants</text>
+    <rect x="718" width="226" height="50" rx="25" fill="#111617" stroke="#273334"/>
+    <text x="744" y="32" fill="#DCE4E5" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="20" font-weight="650">Open Context Pack</text>
+  </g>
+</svg>

@@ -37,7 +37,7 @@ test('formatInsertionSuccess describes assistant and web-page insertions', () =>
     {
       tone: 'success',
       summary: 'Inserted into the active rich text composer.',
-      detail: 'Open Context found a compatible composer on "Local Tool".',
+      detail: 'Rescue found a compatible composer on "Local Tool".',
     },
   );
 });
@@ -53,7 +53,7 @@ test('formatInsertionFailure gives actionable fallback guidance', () => {
     {
       tone: 'error',
       summary: "Couldn't find a visible Claude composer.",
-      detail: 'Open a chat thread or click into the prompt box, then try again. Copy Markdown if you want to continue immediately.',
+      detail: 'Open a chat thread or click into the prompt box, then try again. Copy Handoff if you want to continue immediately.',
     },
   );
 
@@ -67,7 +67,7 @@ test('formatInsertionFailure gives actionable fallback guidance', () => {
     {
       tone: 'error',
       summary: 'Found a composer, but the page blocked insertion.',
-      detail: 'Copy Markdown instead, or paste into the active prompt manually.',
+      detail: 'Copy Handoff instead, or paste into the active prompt manually.',
     },
   );
 });
@@ -104,7 +104,7 @@ test('formatInsertionResult describes auto-send outcomes without overclaiming', 
     {
       tone: 'success',
       summary: 'Inserted and sent in ChatGPT.',
-      detail: 'Open Context used the visible send button on "ChatGPT".',
+      detail: 'Rescue used the visible send button on "ChatGPT".',
     },
   );
 
@@ -137,7 +137,7 @@ test('formatInsertionResult describes disabled or missing composers', () => {
     {
       tone: 'error',
       summary: "Couldn't find a visible Claude composer.",
-      detail: 'Open a chat thread or click into the prompt box, then try again. Copy Markdown if you want to continue immediately.',
+      detail: 'Open a chat thread or click into the prompt box, then try again. Copy Handoff if you want to continue immediately.',
     },
   );
 

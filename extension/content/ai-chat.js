@@ -479,14 +479,14 @@
           }
 
           const insertedOnly = submitResult.code === 'INSERTED_ONLY' || submitResult.code === 'SEND_UNVERIFIED';
-          showToast(insertedOnly ? 'Open Context inserted. Review before sending.' : 'Open Context sent.', false);
+          showToast(insertedOnly ? 'Rescue pack inserted. Review before sending.' : 'Rescue pack sent.', false);
           sendResponse({
             ok: true,
             detail,
             ...submitResult,
           });
         } catch (error) {
-          showToast(error.message || 'Open Context insertion failed.', true);
+          showToast(error.message || 'Rate Limit Rescue insertion failed.', true);
           sendResponse({
             ok: false,
             code: 'INSERT_UNAVAILABLE',

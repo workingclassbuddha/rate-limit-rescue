@@ -1,18 +1,20 @@
-# Open Context Protocol
+# Rate Limit Rescue
 
-Open Context Protocol is a Chrome extension for moving live working context between AI assistants.
+![Rate Limit Rescue banner](docs/branding/rate-limit-rescue-readme-banner-panel-mark.png)
 
-Choose where the work should continue, press go, and Open Context captures the current tab, opens the target assistant, pastes the handoff, and can send it with one click when auto-send is enabled.
+Instant context transfer to your preferred AI.
+
+Rate Limit Rescue is a Chrome extension for the moment an AI chat stops being the right place to continue. When you hit a rate limit, context wall, model limit, or another assistant is better for the next step, Rescue captures the useful working context and transfers it to the assistant you choose.
 
 ## Why It Exists
 
-AI work often gets stuck in one tab: a model hits a limit, the conversation gets too long, or another assistant is better for the next step. Open Context moves the useful working context so you can continue in the assistant you choose.
+AI work often gets stuck in one tab: the model runs out of room, a provider slows you down, or the next step belongs in a different assistant. Rate Limit Rescue keeps the work moving by turning the current state into a reviewable handoff and opening the destination assistant for you.
 
 ## What It Does
 
 - Captures recent conversation context from supported AI assistants
 - Lets you choose the next assistant before handoff
-- Opens the selected assistant and pastes the context pack into its composer
+- Opens the selected assistant and pastes the rescue pack into its composer
 - Optionally presses the visible send button for a one-click transfer
 - Falls back to selected text or visible page context on normal web pages
 - Keeps every handoff inspectable as local-first Markdown and JSON
@@ -21,13 +23,13 @@ AI work often gets stuck in one tab: a model hits a limit, the conversation gets
 
 1. Open an assistant conversation or a page with useful context.
 2. Choose the assistant where you want to continue.
-3. Press `Capture & Open`.
-4. Open Context opens the target assistant and pastes the handoff.
+3. Press `Rescue to AI`.
+4. Rate Limit Rescue opens the target assistant and pastes the handoff.
 5. Review and send, or enable `Send automatically` for one-click paste-and-send.
 
 ## Supported Assistants
 
-Open Context currently includes first-party adapters for:
+Rate Limit Rescue currently includes first-party adapters for:
 
 - ChatGPT
 - Claude
@@ -40,7 +42,7 @@ It can also capture selected text and visible context from normal web pages. Any
 
 - Context packs are created locally in the browser.
 - Handoffs are visible as Markdown before you send them.
-- Auto-send is opt-in.
+- Auto-send is opt-in and off by default.
 - Unsupported or blocked pages fall back to copyable Markdown.
 
 ## Install From Source
@@ -50,13 +52,15 @@ It can also capture selected text and visible context from normal web pages. Any
 3. Click `Load unpacked`
 4. Select this repo's `extension` folder
 5. Open an AI assistant or any useful web page
-6. Choose the target assistant in Open Context
-7. Press `Capture & Open`
+6. Choose the target assistant in Rate Limit Rescue
+7. Press `Rescue to AI`
 8. Review the pasted handoff, or enable `Send automatically` for one-click paste-and-send
 
 ## Open Context Pack
 
-Open Context Pack `0.2` is the current portable JSON format. It records the source, target, task goal, recent messages, selected text or page context, and the continuation prompt. Legacy `0.1` packs import and upgrade to `0.2`.
+Open Context Pack `0.2` is the current portable JSON and Markdown handoff format used by Rate Limit Rescue. It records the source, target, task goal, recent messages, selected text or page context, and the continuation prompt. Legacy `0.1` packs import and upgrade to `0.2`.
+
+Compatibility note: the protocol field remains `open-context-protocol`, and `.ocp.json` exports remain supported so existing packs keep working.
 
 ## Validate
 
@@ -73,7 +77,7 @@ npm run package:chrome
 The packaged Chrome zip is written to:
 
 ```text
-dist/open-context-protocol-chrome.zip
+dist/rate-limit-rescue-chrome.zip
 ```
 
 ## Release

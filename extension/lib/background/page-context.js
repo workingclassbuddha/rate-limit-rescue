@@ -20,9 +20,9 @@ export function createPageContextApi({
 
   function unsupportedPageMessage(url) {
     if (String(url || '').toLowerCase().startsWith('chrome://')) {
-      return 'Open Context cannot inspect browser-internal Chrome pages like chrome:// URLs.';
+      return 'Rate Limit Rescue cannot inspect browser-internal Chrome pages like chrome:// URLs.';
     }
-    return 'Open Context can only work with normal web pages, not browser-internal tabs.';
+    return 'Rate Limit Rescue can only work with normal web pages, not browser-internal tabs.';
   }
 
   async function extractPageContext(tabId) {

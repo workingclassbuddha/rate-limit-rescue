@@ -1,9 +1,9 @@
 {
-  "name": "open-context-protocol",
+  "name": "rate-limit-rescue",
   "version": "0.2.0",
   "private": true,
   "type": "module",
-  "description": "Chrome extension and open schema for moving AI working context between assistants.",
+  "description": "Chrome extension for rescuing AI work from rate limits, context walls, and model limits with instant context transfer to a preferred AI.",
   "scripts": {
     "check:manifest": "node -e \"JSON.parse(require('fs').readFileSync('extension/manifest.json', 'utf8')); console.log('manifest ok')\"",
     "check:schema": "node -e \"JSON.parse(require('fs').readFileSync('schema/open-context-pack.schema.json', 'utf8')); console.log('schema ok')\"",
@@ -13,4 +13,3 @@
     "package:chrome": "node scripts/package-chrome.mjs"
   }
 }
-

@@ -12,13 +12,14 @@ Run this checklist against the unpacked Chrome extension before tagging a releas
 6. Capture a normal web page and verify selected text or visible page context appears.
 7. Import a legacy v0.1 `.ocp.json` file and verify it upgrades to v0.2.
 8. Export a v0.2 `.ocp.json` file and re-import it.
-9. Choose each available target assistant from the popup and confirm `Capture & Open` opens the right destination.
-10. Copy Markdown and paste manually into another assistant.
+9. Choose each available target assistant from the popup and confirm `Rescue to AI` opens the right destination.
+10. Copy Handoff and paste manually into another assistant.
 11. Insert into Claude with auto-send off.
 12. Insert into ChatGPT with auto-send off.
-13. Enable `Send automatically` and confirm the button changes to `Capture, Open & Send`.
+13. Enable `Send automatically` and confirm the button changes to `Rescue & Send`.
 14. Try browser auto-send only after confirming the visible send button is correct.
 15. Confirm unsupported or blocked pages show actionable fallback guidance.
+16. Confirm the popup keeps local-first/privacy messaging visible and auto-send remains off by default.
 
 ## Packaging
 

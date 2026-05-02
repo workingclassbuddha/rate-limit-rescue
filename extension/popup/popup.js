@@ -113,7 +113,7 @@ function syncGoalPresetFromInput() {
 }
 
 function previewPlaceholder() {
-  return 'Capture or select a context pack to preview it here.';
+  return 'Capture or select a rescue pack to preview it here.';
 }
 
 function renderPreview(text = null) {
@@ -127,18 +127,18 @@ function autoSendEnabled() {
 function handoffDetail() {
   const targetLabel = currentTargetLabel();
   const action = autoSendEnabled()
-    ? `Capture & Open will capture this tab, open ${targetLabel}, insert the handoff, and attempt to send with a visible send button.`
-    : `Capture & Open will capture this tab, open ${targetLabel}, and insert the handoff for review.`;
+    ? `Rescue & Send will capture this tab, open ${targetLabel}, insert the handoff, and attempt to send with a visible send button.`
+    : `Rescue to AI will capture this tab, open ${targetLabel}, and insert the handoff for review.`;
 
   if (!selectedPack) {
     return action;
   }
 
   if (currentIsSupportedAiPage) {
-    return 'This tab looks like a supported assistant, so you can inject the selected pack here or use Capture & Open for a new handoff.';
+    return 'This tab looks like a supported assistant, so you can insert the selected rescue pack here or use Rescue to AI for a new handoff.';
   }
 
-  return `${action} You can still copy, export, or inject packs manually.`;
+  return `${action} You can still copy, export, or insert packs manually.`;
 }
 
 function setHandoffStatus(message, { tone = 'neutral', detail = null } = {}) {
@@ -167,23 +167,23 @@ function showError(error) {
 
 function selectedPackStatus() {
   if (!selectedPack) {
-    return 'No context pack captured yet.';
+    return 'No rescue pack has been captured yet.';
   }
 
   return `Selected pack from ${selectedPack.source?.label || 'a page'} · ${relativeTime(selectedPack.savedAt || selectedPack.createdAt)}`;
 }
 
 function updateActionStates() {
-  setButtonState('copy-context', !selectedMarkdown, 'Capture or select a context pack first.');
-  setButtonState('export-json', !selectedPack, 'Capture or select a context pack first.');
+  setButtonState('copy-context', !selectedMarkdown, 'Capture or select a rescue pack first.');
+  setButtonState('export-json', !selectedPack, 'Capture or select a rescue pack first.');
   setButtonState('capture-context', !hasActiveTab, 'Open a normal web page or assistant tab first.');
   setButtonState('open-and-inject', !hasActiveTab, 'Open a normal web page or assistant tab first.');
   setButtonState(
     'insert-current',
     !selectedPack || !currentIsSupportedAiPage,
     !selectedPack
-      ? 'Capture or select a context pack first.'
-      : 'Open a supported assistant page to inject into the current chat.',
+      ? 'Capture or select a rescue pack first.'
+      : 'Open a supported assistant page to insert into the current chat.',
   );
   updateLaunchCopy();
 }
@@ -204,7 +204,7 @@ function setButtonState(buttonId, disabled, reason = '') {
 function updateLaunchCopy() {
   const button = $('open-and-inject');
   if (button && !button.disabled) {
-    button.textContent = autoSendEnabled() ? 'Capture, Open & Send' : 'Capture & Open';
+    button.textContent = autoSendEnabled() ? 'Rescue & Send' : 'Rescue to AI';
   }
 }
 
@@ -313,7 +313,7 @@ function renderRecents(packs = [], activePackId = '') {
   if (!packs.length) {
     const empty = document.createElement('div');
     empty.className = 'meta';
-    empty.textContent = 'No recent context packs yet.';
+    empty.textContent = 'No recent rescue packs yet.';
     list.appendChild(empty);
     return;
   }
@@ -373,7 +373,7 @@ function renderRecents(packs = [], activePackId = '') {
           setSelectedPayload();
         }
         await refreshStatus();
-        setHandoffStatus('Deleted context pack.', { tone: 'success' });
+        setHandoffStatus('Deleted rescue pack.', { tone: 'success' });
       }
     });
 
@@ -391,7 +391,7 @@ function renderRecents(packs = [], activePackId = '') {
 async function loadContextPack(id, { persist = false } = {}) {
   if (!id) {
     setSelectedPayload();
-    setHandoffStatus('No context pack captured yet.');
+    setHandoffStatus('No rescue pack has been captured yet.');
     renderRecents(recentPacks);
     return null;
   }
@@ -402,7 +402,7 @@ async function loadContextPack(id, { persist = false } = {}) {
   });
 
   if (!result?.ok) {
-    throw new Error(result?.error || 'Could not load the selected context pack.');
+    throw new Error(result?.error || 'Could not load the selected rescue pack.');
   }
 
   setSelectedPayload(result);
@@ -424,13 +424,13 @@ async function refreshStatus() {
     throw new Error(status?.error || 'Could not load extension status.');
   }
   if (!latest?.ok) {
-    throw new Error(latest?.error || 'Could not load the latest context pack.');
+    throw new Error(latest?.error || 'Could not load the latest rescue pack.');
   }
   if (!active?.ok) {
-    throw new Error(active?.error || 'Could not load the selected context pack.');
+    throw new Error(active?.error || 'Could not load the selected rescue pack.');
   }
   if (!recents?.ok) {
-    throw new Error(recents?.error || 'Could not load recent context packs.');
+    throw new Error(recents?.error || 'Could not load recent rescue packs.');
   }
   if (!targets?.ok) {
     throw new Error(targets?.error || 'Could not load target providers.');
@@ -457,7 +457,7 @@ async function runAction(buttonId, busyLabel, fn) {
   try {
     const result = await fn();
     if (!result?.ok) {
-      throw new Error(result?.error || 'Open Context action failed.');
+      throw new Error(result?.error || 'Rate Limit Rescue action failed.');
     }
     return result;
   } catch (error) {
@@ -476,7 +476,7 @@ async function ensureSelectedPackLoaded() {
   if (!selectedPackId) {
     const active = await sendMessage({ type: 'GET_ACTIVE_CONTEXT_PACK' });
     if (!active?.ok || !active.pack?.id) {
-      throw new Error('No context pack captured yet.');
+      throw new Error('No rescue pack has been captured yet.');
     }
     setSelectedPayload(active);
     setHandoffStatus(selectedPackStatus());
@@ -527,14 +527,14 @@ $('capture-context').addEventListener('click', async () => {
 
   setSelectedPayload(result);
   await refreshStatus();
-  setHandoffStatus('Captured a new Open Context Pack.', { tone: 'success' });
+  setHandoffStatus('Captured a new rescue pack.', { tone: 'success' });
 });
 
 $('copy-context').addEventListener('click', async () => {
   try {
     await ensureSelectedPackLoaded();
     await navigator.clipboard.writeText(selectedMarkdown);
-    setHandoffStatus('Copied selected Open Context Pack.', { tone: 'success' });
+    setHandoffStatus('Copied handoff from selected rescue pack.', { tone: 'success' });
   } catch (error) {
     showError(error);
   }
@@ -544,7 +544,7 @@ $('export-json').addEventListener('click', async () => {
   try {
     await ensureSelectedPackLoaded();
     if (!selectedPack) {
-      throw new Error('No context pack available to export yet.');
+      throw new Error('No rescue pack available to export yet.');
     }
     downloadJson(selectedPack);
     setHandoffStatus('Exported selected Open Context Pack as JSON.', { tone: 'success' });
@@ -569,7 +569,7 @@ $('import-file').addEventListener('change', async (event) => {
     });
 
     if (!result?.ok) {
-      throw new Error(result?.error || 'Could not import that context pack.');
+      throw new Error(result?.error || 'Could not import that rescue pack.');
     }
 
     setSelectedPayload(result);
@@ -615,14 +615,14 @@ $('insert-current').addEventListener('click', async () => {
     return;
   }
 
-  const result = await runAction('insert-current', 'Injecting...', () => sendMessage({
+  const result = await runAction('insert-current', 'Inserting...', () => sendMessage({
     type: 'INSERT_CONTEXT_PACK',
     id: selectedPackId,
   }));
   if (!result) return;
 
   setSelectedPayload(result);
-  applyFeedback(result.feedback, 'Inserted selected Open Context Pack.');
+  applyFeedback(result.feedback, 'Inserted selected rescue pack.');
 });
 
 refreshStatus().catch((error) => {

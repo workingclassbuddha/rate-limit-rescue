@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "Open Context Protocol",
-  "short_name": "Open Context",
+  "name": "Rate Limit Rescue",
+  "short_name": "Rescue",
   "version": "0.2.0",
-  "description": "Capture AI working context and continue it across ChatGPT, Claude, Gemini, DeepSeek, and more assistants.",
+  "description": "Instant context transfer to your preferred AI when rate limits, context walls, or model limits interrupt the work.",
   "homepage_url": "https://github.com/workingclassbuddha/open-context-protocol",
   "minimum_chrome_version": "114",
   "permissions": [
@@ -24,7 +24,7 @@
       "suggested_key": {
         "default": "Alt+Shift+I"
       },
-      "description": "Insert the selected context pack into the active chat"
+      "description": "Insert the selected rescue pack into the active chat"
     }
   },
   "host_permissions": [
@@ -54,7 +54,7 @@
     "128": "icons/icon-128.png"
   },
   "action": {
-    "default_title": "Open Context Protocol",
+    "default_title": "Rate Limit Rescue",
     "default_popup": "popup/popup.html",
     "default_icon": {
       "16": "icons/icon-16.png",

@@ -1,0 +1,30 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><filter id="soft"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.35"/></filter></defs>
+  <rect width="1200" height="320" rx="42" fill="#050607"/>
+  <circle cx="1040" cy="42" r="220" fill="#153635" fill-opacity="0.45"/>
+  <g transform="translate(72 56) scale(0.40625)" filter="url(#soft)">
+    <g transform="translate(0 0) scale(1)">
+      <rect x="88" y="112" width="132" height="288" rx="38" fill="#0F1718" stroke="#3DD6C8" stroke-width="18"/>
+      <rect x="292" y="112" width="132" height="288" rx="38" fill="#0F1718" stroke="#3DD6C8" stroke-width="18"/>
+      <rect x="112" y="150" width="84" height="18" rx="9" fill="#A9F0EA" opacity="0.74"/>
+      <rect x="112" y="188" width="64" height="14" rx="7" fill="#273334"/>
+      <rect x="112" y="222" width="84" height="14" rx="7" fill="#273334"/>
+      <rect x="316" y="150" width="84" height="18" rx="9" fill="#A9F0EA" opacity="0.74"/>
+      <rect x="316" y="188" width="64" height="14" rx="7" fill="#273334"/>
+      <rect x="316" y="222" width="84" height="14" rx="7" fill="#273334"/>
+      <path d="M235 256H277" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round"/>
+      <path d="M277 256L248 227" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M277 256L248 285" stroke="#F5F7F7" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M235 256H277" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round"/>
+      <path d="M277 256L248 227" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M277 256L248 285" stroke="#3DD6C8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    </g></g>
+  <text x="328" y="135" fill="#F5F7F7" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="68" font-weight="750" letter-spacing="-2.6">Rate Limit Rescue</text>
+  <text x="332" y="194" fill="#A9B1B2" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="28" font-weight="500">Instant context transfer to your preferred AI</text>
+  <g transform="translate(332 230)">
+    <rect width="148" height="42" rx="21" fill="#111617" stroke="#273334"/>
+    <text x="22" y="28" fill="#DCE4E5" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="650">Local-first</text>
+    <rect x="166" width="190" height="42" rx="21" fill="#111617" stroke="#273334"/>
+    <text x="188" y="28" fill="#DCE4E5" font-family="Inter, Figtree, ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif" font-size="18" font-weight="650">Review before send</text>
+  </g>
+</svg>

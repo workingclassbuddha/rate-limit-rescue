@@ -67,19 +67,19 @@ async function ensureContextMenus() {
   await Promise.all([
     callbackPromise((done) => chrome.contextMenus.create({
       id: CONTEXT_MENU_IDS.root,
-      title: 'Open Context Protocol',
+      title: 'Rate Limit Rescue',
       contexts: ['page', 'selection', 'editable'],
     }, done)),
     callbackPromise((done) => chrome.contextMenus.create({
       id: CONTEXT_MENU_IDS.capture,
       parentId: CONTEXT_MENU_IDS.root,
-      title: 'Capture Context Pack',
+      title: 'Save Rescue Pack',
       contexts: ['page', 'selection'],
     }, done)),
     callbackPromise((done) => chrome.contextMenus.create({
       id: CONTEXT_MENU_IDS.insert,
       parentId: CONTEXT_MENU_IDS.root,
-      title: 'Insert Selected Context Pack',
+      title: 'Insert Rescue Pack',
       contexts: ['editable'],
       documentUrlPatterns: supportedAiDocumentPatterns,
     }, done)),
@@ -146,7 +146,7 @@ async function loadContextPackForInsert(id) {
   if (id) {
     const pack = await storageApi.getContextPackById(id);
     if (!pack) {
-      throw new Error('No matching Open Context Pack was found.');
+      throw new Error('No matching rescue pack was found.');
     }
     return pack;
   }
@@ -161,7 +161,7 @@ async function loadContextPackForInsert(id) {
     return latestPack;
   }
 
-  throw new Error('No Open Context Pack has been captured yet.');
+  throw new Error('No rescue pack has been captured yet.');
 }
 
 async function waitForTabComplete(tabId, timeoutMs = 15000) {
@@ -215,7 +215,7 @@ async function insertMarkdownIntoTab(tabId, markdown, { submit = false } = {}) {
       }
 
       lastResult = result || null;
-      lastError = result?.error || 'Could not insert the context pack.';
+      lastError = result?.error || 'Could not insert the rescue pack.';
     } catch (error) {
       lastError = error.message || String(error);
     }
@@ -223,8 +223,8 @@ async function insertMarkdownIntoTab(tabId, markdown, { submit = false } = {}) {
     await sleep(Math.min(450 + attempt * 120, 1500));
   }
 
-  console.warn('Open Context insertion retries exhausted.', { tabId, lastError });
-  const error = new Error(lastError || 'Could not auto-inject the selected context pack.');
+  console.warn('Rate Limit Rescue insertion retries exhausted.', { tabId, lastError });
+  const error = new Error(lastError || 'Could not auto-insert the selected rescue pack.');
   if (lastResult) {
     error.result = lastResult;
   }
@@ -234,12 +234,12 @@ async function insertMarkdownIntoTab(tabId, markdown, { submit = false } = {}) {
 async function insertLatestContextPack() {
   const tab = await pageContextApi.getActiveTab();
   if (!tab?.id || !isSupportedAiUrl(tab.url)) {
-    throw new Error('Open a supported assistant page, then insert the latest context pack.');
+    throw new Error('Open a supported assistant page, then insert the latest rescue pack.');
   }
 
   const pack = await storageApi.getLatestContextPack();
   if (!pack) {
-    throw new Error('No Open Context Pack has been captured yet.');
+    throw new Error('No rescue pack has been captured yet.');
   }
 
   const markdown = formatContextPackMarkdown(pack);
@@ -265,7 +265,7 @@ async function insertContextPackById(id) {
   const pack = await loadContextPackForInsert(id);
   const tab = await pageContextApi.getActiveTab();
   if (!tab?.id || !isSupportedAiUrl(tab.url)) {
-    throw new Error('Open a supported assistant page, then inject the selected context pack.');
+    throw new Error('Open a supported assistant page, then insert the selected rescue pack.');
   }
 
   const markdown = formatContextPackMarkdown(pack);
@@ -376,7 +376,7 @@ const messageHandlers = {
     if (!pack) {
       return {
         ok: false,
-        error: 'No matching Open Context Pack was found.',
+        error: 'No matching rescue pack was found.',
       };
     }
 
@@ -388,7 +388,7 @@ const messageHandlers = {
     if (!pack) {
       return {
         ok: false,
-        error: 'No matching Open Context Pack was found.',
+        error: 'No matching rescue pack was found.',
       };
     }
 
@@ -398,7 +398,7 @@ const messageHandlers = {
   async DELETE_CONTEXT_PACK(message) {
     const deleted = await storageApi.deleteContextPack(message.id);
     if (!deleted) {
-      return { ok: false, error: 'Could not delete that context pack.' };
+      return { ok: false, error: 'Could not delete that rescue pack.' };
     }
 
     return { ok: true };
@@ -457,7 +457,7 @@ const messageHandlers = {
 };
 
 chrome.runtime.onInstalled.addListener(() => {
-  ensureContextMenus().catch((error) => console.error('Open Context setup failed.', error));
+  ensureContextMenus().catch((error) => console.error('Rate Limit Rescue setup failed.', error));
 });
 
 chrome.contextMenus.onClicked.addListener(async (info) => {
@@ -517,4 +517,4 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   return true;
 });
 
-ensureContextMenus().catch((error) => console.error('Open Context setup failed.', error));
+ensureContextMenus().catch((error) => console.error('Rate Limit Rescue setup failed.', error));

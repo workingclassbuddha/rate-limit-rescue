@@ -7,7 +7,8 @@ const root = process.cwd();
 const extensionDir = path.join(root, 'extension');
 const iconsDir = path.join(extensionDir, 'icons');
 const distDir = path.join(root, 'dist');
-const zipPath = path.join(distDir, 'open-context-protocol-chrome.zip');
+const zipPath = path.join(distDir, 'rate-limit-rescue-chrome.zip');
+const legacyZipPath = path.join(distDir, 'open-context-protocol-chrome.zip');
 const outputSizes = [16, 32, 48, 128];
 const MASTER_SIZE = 512;
 
@@ -231,6 +232,10 @@ for (const size of outputSizes) {
 
 if (fs.existsSync(zipPath)) {
   fs.rmSync(zipPath);
+}
+
+if (fs.existsSync(legacyZipPath)) {
+  fs.rmSync(legacyZipPath);
 }
 
 execFileSync('/usr/bin/zip', [

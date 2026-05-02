@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Open Context Protocol</title>
+    <title>Rate Limit Rescue</title>
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
@@ -22,8 +22,8 @@
           </svg>
         </div>
         <div>
-          <div class="logo-name">Open Context</div>
-          <div class="logo-sub">Move context between AI assistants</div>
+          <div class="logo-name">Rate Limit Rescue</div>
+          <div class="logo-sub">Instant context transfer to your preferred AI.</div>
         </div>
       </header>
 
@@ -75,19 +75,19 @@
           <input id="auto-send" type="checkbox">
           <span class="toggle-copy">
             <span>Send automatically</span>
-            <small>Off by default. When off, Open Context inserts the handoff for review.</small>
+            <small>Off by default. When off, Rescue inserts the handoff for review.</small>
           </span>
         </label>
-        <button id="open-and-inject" class="btn btn-primary wide" disabled>Capture & Open</button>
-        <button id="capture-context" class="btn btn-ghost wide">Capture Only</button>
-        <button id="insert-current" class="btn btn-ghost wide" disabled>Inject Into Current Chat</button>
+        <button id="open-and-inject" class="btn btn-primary wide" disabled>Rescue to AI</button>
+        <button id="capture-context" class="btn btn-ghost wide">Save Rescue Pack</button>
+        <button id="insert-current" class="btn btn-ghost wide" disabled>Insert Rescue Pack</button>
         <div class="btn-row utility-row">
-          <button id="copy-context" class="btn btn-ghost" disabled>Copy Markdown</button>
-          <button id="export-json" class="btn btn-ghost" disabled>Export JSON</button>
+          <button id="copy-context" class="btn btn-ghost" disabled>Copy Handoff</button>
+          <button id="export-json" class="btn btn-ghost" disabled>Export Pack</button>
         </div>
         <button id="import-json" class="btn btn-ghost subtle wide">Import JSON</button>
         <input id="import-file" type="file" accept=".json,.ocp.json,.context.json,application/json" hidden>
-        <div id="handoff-status" class="meta status-line" role="status" aria-live="polite">No context pack captured yet.</div>
+        <div id="handoff-status" class="meta status-line" role="status" aria-live="polite">No rescue pack has been captured yet.</div>
       </section>
 
       <!-- More -->
@@ -95,7 +95,7 @@
         <details id="advanced-panel" class="advanced-panel">
           <summary class="advanced-toggle">More</summary>
           <div class="advanced-body">
-            <div id="handoff-detail" class="meta">Capture & Open captures this tab, opens the selected target, and inserts the handoff for review.</div>
+            <div id="handoff-detail" class="meta">Rescue to AI captures this tab, opens the selected target, and inserts the handoff for review.</div>
 
             <div class="advanced-block">
               <div class="section-label small">Selected Pack</div>
@@ -125,13 +125,13 @@
 
             <div class="advanced-block">
               <div class="section-label small">Preview</div>
-              <pre id="preview" class="preview">Capture a context pack to preview it here.</pre>
+              <pre id="preview" class="preview">Capture a rescue pack to preview it here.</pre>
             </div>
 
             <div class="advanced-block">
               <div class="section-label small">Recent Packs</div>
               <div id="recent-list">
-                <div style="font-size:12px;color:var(--t-lo)">No recent context packs yet.</div>
+                <div style="font-size:12px;color:var(--t-lo)">No recent rescue packs yet.</div>
               </div>
             </div>
           </div>

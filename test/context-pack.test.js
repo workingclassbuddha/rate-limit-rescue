@@ -157,12 +157,17 @@ test('v0.1 packs upgrade to v0.2 and can export a legacy copy', () => {
   };
 
   const upgraded = upgradeLegacyContextPack(legacy);
+  const coerced = coerceContextPack(legacy);
   const downgraded = exportLegacyContextPack(upgraded);
 
   assert.equal(isLegacyContextPack(legacy), true);
   assert.equal(upgraded.version, '0.2');
+  assert.equal(upgraded.protocol, 'open-context-protocol');
   assert.equal(upgraded.task.goal, 'Continue the legacy work.');
   assert.equal(upgraded.review.status, 'imported');
+  assert.equal(coerced.version, '0.2');
+  assert.equal(coerced.protocol, 'open-context-protocol');
+  assert.equal(coerced.task.goal, 'Continue the legacy work.');
   assert.equal(downgraded.version, '0.1');
   assert.equal(downgraded.summary.goal, upgraded.task.goal);
 });

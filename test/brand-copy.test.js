@@ -19,7 +19,7 @@ test('public extension metadata uses Rate Limit Rescue branding', () => {
 test('popup public copy uses Rescue labels while preserving technical imports', () => {
   assert.match(popupHtml, /Rate Limit Rescue/);
   assert.match(popupHtml, /Instant context transfer to your preferred AI\./);
-  assert.match(popupHtml, /Rescue to AI/);
+  assert.match(popupHtml, /Capture & Open/);
   assert.match(popupHtml, /Save Rescue Pack/);
   assert.match(popupHtml, /Insert Rescue Pack/);
   assert.match(popupHtml, /Copy Handoff/);

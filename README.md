@@ -23,7 +23,7 @@ AI work often gets stuck in one tab: the model runs out of room, a provider slow
 
 1. Open an assistant conversation or a page with useful context.
 2. Choose the assistant where you want to continue.
-3. Press `Rescue to AI`.
+3. Press `Capture & Open`.
 4. Rate Limit Rescue opens the target assistant and pastes the handoff.
 5. Review and send, or enable `Send automatically` for one-click paste-and-send.
 
@@ -53,7 +53,7 @@ It can also capture selected text and visible context from normal web pages. Any
 4. Select this repo's `extension` folder
 5. Open an AI assistant or any useful web page
 6. Choose the target assistant in Rate Limit Rescue
-7. Press `Rescue to AI`
+7. Press `Capture & Open`
 8. Review the pasted handoff, or enable `Send automatically` for one-click paste-and-send
 
 ## Open Context Pack

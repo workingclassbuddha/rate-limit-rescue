@@ -127,15 +127,15 @@ function autoSendEnabled() {
 function handoffDetail() {
   const targetLabel = currentTargetLabel();
   const action = autoSendEnabled()
-    ? `Rescue & Send will capture this tab, open ${targetLabel}, insert the handoff, and attempt to send with a visible send button.`
-    : `Rescue to AI will capture this tab, open ${targetLabel}, and insert the handoff for review.`;
+    ? `Capture, Open & Send will capture this tab, open ${targetLabel}, insert the handoff, and attempt to send with a visible send button.`
+    : `Capture & Open will capture this tab, open ${targetLabel}, and insert the handoff for review.`;
 
   if (!selectedPack) {
     return action;
   }
 
   if (currentIsSupportedAiPage) {
-    return 'This tab looks like a supported assistant, so you can insert the selected rescue pack here or use Rescue to AI for a new handoff.';
+    return 'This tab looks like a supported assistant, so you can insert the selected rescue pack here or use Capture & Open for a new handoff.';
   }
 
   return `${action} You can still copy, export, or insert packs manually.`;
@@ -204,7 +204,7 @@ function setButtonState(buttonId, disabled, reason = '') {
 function updateLaunchCopy() {
   const button = $('open-and-inject');
   if (button && !button.disabled) {
-    button.textContent = autoSendEnabled() ? 'Rescue & Send' : 'Rescue to AI';
+    button.textContent = autoSendEnabled() ? 'Capture, Open & Send' : 'Capture & Open';
   }
 }
 

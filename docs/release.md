@@ -2,13 +2,13 @@
 
 Rate Limit Rescue is a Chrome extension for instant context transfer to your preferred AI when rate limits, context walls, model limits, or assistant fit interrupt the work.
 
-The public release story is simple: choose the assistant where the work should continue, press `Rescue to AI`, and Rescue carries the current context into the next composer. If `Send automatically` is enabled, it attempts to press the visible send button after insertion.
+The public release story is simple: choose the assistant where the work should continue, press `Capture & Open`, and Rescue carries the current context into the next composer. If `Send automatically` is enabled, it attempts to press the visible send button after insertion.
 
 ## User Flow
 
 1. Open an assistant conversation or a useful web page.
 2. Choose the target assistant.
-3. Press `Rescue to AI`.
+3. Press `Capture & Open`.
 4. Rate Limit Rescue captures the current work, opens the target assistant, and pastes the handoff.
 5. When `Send automatically` is enabled, Rescue attempts to press the visible send button after insertion.
 

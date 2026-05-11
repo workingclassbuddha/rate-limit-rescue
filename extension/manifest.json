@@ -4,7 +4,7 @@
   "short_name": "Rescue",
   "version": "0.2.0",
   "description": "Instant context transfer to your preferred AI when rate limits, context walls, or model limits interrupt the work.",
-  "homepage_url": "https://github.com/workingclassbuddha/open-context-protocol",
+  "homepage_url": "https://github.com/workingclassbuddha/rate-limit-rescue",
   "minimum_chrome_version": "114",
   "permissions": [
     "storage",

@@ -44,6 +44,8 @@ It can also capture selected text and visible context from normal web pages. Any
 - Handoffs are visible as Markdown before you send them.
 - Auto-send is opt-in and off by default.
 - Unsupported or blocked pages fall back to copyable Markdown.
+- Privacy policy: [`PRIVACY.md`](PRIVACY.md)
+- Chrome Web Store privacy report: [`docs/chrome-privacy-report.md`](docs/chrome-privacy-report.md)
 
 ## Install From Source
 
@@ -84,4 +86,6 @@ dist/rate-limit-rescue-chrome.zip
 
 - Release notes: `docs/release.md`
 - Manual QA: `docs/manual-qa.md`
+- Privacy policy: `PRIVACY.md`
+- Chrome privacy report: `docs/chrome-privacy-report.md`
 - Schema: `schema/open-context-pack.schema.json`

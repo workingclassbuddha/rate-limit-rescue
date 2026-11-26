@@ -1,0 +1,24 @@
+name: Feature proposal
+description: Propose a concrete improvement to AI handoffs.
+title: "[Feature]: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Describe the workflow and current friction.
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed improvement and alternatives
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Permissions, privacy and compatibility implications
+      description: Identify new permissions, data flows, user controls or schema changes, if any.
+    validations:
+      required: true

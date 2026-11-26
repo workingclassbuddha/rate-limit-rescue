@@ -89,3 +89,7 @@ dist/rate-limit-rescue-chrome.zip
 - Privacy policy: `PRIVACY.md`
 - Chrome privacy report: `docs/chrome-privacy-report.md`
 - Schema: `schema/open-context-pack.schema.json`
+
+## Related independent tool
+
+[Hermes Relay for Chrome](https://github.com/workingclassbuddha/hermes-relay-for-chrome) provides browser context and revisit continuity for a locally running Hermes Agent. Rate Limit Rescue is a separate, standalone handoff extension; neither extension requires the other.

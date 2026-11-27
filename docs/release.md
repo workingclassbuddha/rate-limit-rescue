@@ -1,4 +1,6 @@
-# Rate Limit Rescue Public Release
+# Rate Limit Rescue release candidate
+
+**Publication status:** source and manifest version `0.2.0`; no published GitHub release was present at the 27 November 2026 check. Build instructions below produce a local candidate, not a published download. Provider integration and user testing remain release gates.
 
 Rate Limit Rescue is a Chrome extension for instant context transfer to your preferred AI when rate limits, context walls, model limits, or assistant fit interrupt the work.
 
